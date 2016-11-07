@@ -4,8 +4,11 @@ This repository contains a local manifest that can be used to build westeros-wpe
 # 1) Setup OE RPB system
 
 $ mkdir ~/bin
+
 $ PATH=~/bin:$PATH
+
 $ curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+
 $ chmod a+x ~/bin/repo
 
 Run repo init to bring down the latest version of Repo with all its most recent bug fixes. You must specify a URL for the manifest, which specifies where the various repositories included in the Android source will be placed within your working directory. To check out the current branch, specify it with -b:
@@ -32,11 +35,13 @@ $ repo sync
 When downloading from behind a proxy (which is common in some corporate environments), it might be necessary to explicitly specify the proxy that is then used by repo:
 
 $ export HTTP_PROXY=http://<proxy_user_id>:<proxy_password>@<proxy_server>:<proxy_port>
+
 $ export HTTPS_PROXY=http://<proxy_user_id>:<proxy_password>@<proxy_server>:<proxy_port>
 
 More rarely, Linux clients experience connectivity issues, getting stuck in the middle of downloads (typically during "Receiving objects"). It has been reported that tweaking the settings of the TCP/IP stack and using non-parallel commands can improve the situation. You need root access to modify the TCP setting:
 
 $ sudo sysctl -w net.ipv4.tcp_window_scaling=0
+
 $ repo sync -j1
 
 # 4) Setup Environment
