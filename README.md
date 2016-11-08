@@ -70,7 +70,50 @@ BBMASK = "meta-metrological/recipes-multimedia/gstreamer/gstreamer1.0-plugins-ba
 
 $ bitbake lof-westeros-wpe-image
 
-This will build the 32bit rootfs image with Westeros and WPE components. Need to copy 64bit kernel modules(/boot and /lib/modules) into this rootfs before flashing the image to hikey board.
+This will build the 32bit rootfs image with Westeros and WPE components i.e lof-westeros-wpe-image-hikey-32.ext4.gz. Need to copy 64bit kernel modules(/boot and /lib/modules) into this rootfs before flashing the image to hikey board as below
+
+$ gunzip lof-westeros-wpe-image-hikey-32.ext4.gz
+
+$ sudo mount -o loop,sync,rw lof-westeros-wpe-image-hikey-32.ext4 rootfs-db410c-32 (mount the 32bit image into a directory)
+
+$ sudo rsync -avz rootfs-db410c-64/boot rootfs-db410c-32/ (rsync boot files from 64bit image)
+
+$ sudo rsync -avz rootfs-db410c-64/lib/modules rootfs-db410c-32/lib/ (rsync kernel modules from 64bit image)
+
+$ sudo umount rootfs-db410c-32 (unmount the rootfs)
+
+$ ext2simg lof-westeros-wpe-image-hikey-32.ext4 lof-westeros-wpe-image-hikey-32.img
+
+# 7) Flashing
+
+Follow the link https://github.com/96boards/documentation/wiki/HiKeyUEFI#flash-binaries-to-emmc- for standard flashing procedure. To flash the above build rootfs, use the below command
+
+$ sudo fastboot flash system lof-westeros-wpe-image.img
+
+
+# 8) Launching Westeros compositor
+
+$ export XDG_RUNTIME_DIR=/run/user/
+
+$ LD_PRELOAD=/usr/lib/libwesteros_gl.so.0 westeros –renderer /usr/lib/libwesteros_render_gl.so.0 --enableCursor --display westeros-1-0 &
+
+This will launch the Westeros compositor as you can see blank screen with mouse cursor on the display. The option --enableCursor is to enable the mouse pointer while --display displayName is used to set the display name.
+
+# 9) Running westeros test application
+
+$ westeros_test --display=westeros-1-0
+
+This will run the westeros_test application which displays the continously rotating color triangle on the screen.
+
+# 10) Running WPELauncher with westeros backend
+
+$ export WAYLAND_DISPLAY=westeros-1-0
+
+$ export WPE_BACKEND=westeros
+
+$ ./WPELauncher <URL>
+
+This will launch the webpage of the provided URL using WPELauncher. It will launch youtube if no URL is provided.
 
 # Updating the sandbox
 
@@ -81,3 +124,7 @@ $ repo sync
 Rebase your local committed changes
 
 $ repo rebase
+
+# Maintainer
+
+Sivasubramanian Patchaiperumal sivasubramanian.patchaiperumal@linaro.org
