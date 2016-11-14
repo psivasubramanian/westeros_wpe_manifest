@@ -5,6 +5,6 @@
   <remote fetch="https://github.com" name="github"/>
 
   <project remote="github" name="linaro-home/meta-lhg" path="layers/meta-lhg" revision="master"/>
-  <project remote="github" name="Metrological/meta-metrological" path="layers/meta-metrological" revision="master"/>
+  <project remote="github" name="Metrological/meta-metrological" path="layers/meta-metrological" revision="fdffd8fccd5816228443c4eab9736771c84f18e2"/>
 
 </manifest>
