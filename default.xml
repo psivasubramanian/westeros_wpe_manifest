@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
 
-  <default revision="krogoth" sync-j="4"/>
+  <default revision="morty" sync-j="4"/>
   <remote fetch="https://github.com" name="github"/>
 
-  <project remote="github" name="linaro-home/meta-lhg" path="layers/meta-lhg" revision="master"/>
-  <project remote="github" name="Metrological/meta-metrological" path="layers/meta-metrological" revision="fdffd8fccd5816228443c4eab9736771c84f18e2"/>
+  <project remote="github" name="linaro-home/meta-lhg" path="layers/meta-lhg"/>
+  <project remote="github" name="Metrological/meta-metrological" path="layers/meta-metrological" revision="40cf2e4b9a89a7cbc4aa5306e1926a14c93150bc"/>
 
 </manifest>
