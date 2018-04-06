@@ -4,6 +4,10 @@
   <default revision="morty" sync-j="4"/>
   <remote fetch="https://github.com" name="github"/>
 
+  <!-- work around meta-96boards issue #196 -->
+  <remove-project name="96boards/meta-96boards" />
+  <project remote="github" name="96boards/meta-96boards" path="layers/meta-96boards" revision="f2d9bf62f7cf4c3cac5f23f603ad712a21213239" />
+
   <project remote="github" name="linaro-home/meta-lhg" path="layers/meta-lhg"/>
   <project remote="github" name="Metrological/meta-metrological" path="layers/meta-metrological" revision="1d712bb6e557411bdd3e358b5d9098cff7df15b7"/>
 
